@@ -5,6 +5,7 @@ import CHome from 'component/home'
 import CImages from 'component/images'
 import CUseRef from 'component/useRef'
 import CUseState from 'component/useState'
+import CUseStateCallbackWrapper from 'component/useStateCallbackWrapper'
 
 const routes = [
   {exact: true, path: "/", component: (props)=>(<Redirect to="/home" />)},
@@ -12,6 +13,7 @@ const routes = [
   {path: "/images", component: CImages},
   {path: "/useState", component: CUseState},
   {path: "/useRef", component: CUseRef},
+  {path: "/useStateCallbackWrapper", component: CUseStateCallbackWrapper},
   {path: "/routeMap", component: CRouteMap, routes: [
       {path: `/routeMap/useRef`, component: CUseRef},
       {path: `/routeMap/useState`, component: CUseState}
