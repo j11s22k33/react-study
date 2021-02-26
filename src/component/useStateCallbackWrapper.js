@@ -4,22 +4,24 @@ import React, {
 import {useStateCallbackWrapper} from '../utils/common'
 
 export default () => {
-  const [cnt, setCnt, cb] = useStateCallbackWrapper(0)
-  const [cnt2, setCnt2, cb2] = useStateCallbackWrapper(10)
+  const [cnt, updCnt] = useStateCallbackWrapper(0)
+  const [cnt2, updCnt2] = useStateCallbackWrapper(10)
 
   useEffect(() => {
     console.log(`[component] mount`)
-    
-    
-    setInterval(()=>{
-      cb.current.effect = state => {
-        console.log(`effect`, state)
-      }
-      cb2.current.effect = state => {
-        console.log(`effect2`, state)
-      }
-      setCnt(c=>c+1)
-      setCnt2(c=>c+1)
+        
+    setInterval(()=>{        
+      updCnt({
+        setState: state => state+1,
+        useLayoutEffect: state => console.log('useLayoutEffect', state),
+        useEffect: state => console.log('useEffect', state)
+      })
+
+      updCnt2({
+        setState: state => state+1,
+        useLayoutEffect: state => console.log('useLayoutEffect', state),
+        useEffect: state => console.log('useEffect', state)
+      })
     }, 1000)
 
     return ()=>{
