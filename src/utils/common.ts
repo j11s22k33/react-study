@@ -15,7 +15,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
  * @param initialState
  * @returns [state, updateState]
  */
-const useStateCallbackWrapper = (initialState:any):[any, Function] => {
+const useStateCallbackWrapper = (initialState?:any):[any, Function] => {
   const [_state, _setState] = useState(initialState)
   const _ref = useRef({ effect: null, layoutEffect: null })
 
