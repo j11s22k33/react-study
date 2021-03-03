@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useStateCallbackWrapper } from "../utils/common";
 
 export default () => {
-  const [cnt, updCnt] = useStateCallbackWrapper<number>(0);
+  const [cnt, updCnt] = useStateCallbackWrapper(0);
 
   useEffect(() => {
     console.log(`----> useEffect`, cnt);
