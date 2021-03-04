@@ -15,26 +15,26 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
  * @param initialState
  * @returns [state, updateState]
  */
-const _emptyFn = state => { };
+const $emptyFn = (state) => { };
 const useStateCallbackWrapper = <T extends unknown>(initialState?: T): [T, Function] => {
-  const [_state, _setState] = useState(initialState);
-  const _ref = useRef({ effect: _emptyFn, layoutEffect: _emptyFn });
+  const [$state, $setState] = useState(initialState);
+  const $res = useRef({ effect: $emptyFn, layoutEffect: $emptyFn });
 
   useLayoutEffect(() => {
-    _ref.current.layoutEffect(_state);
-  }, [_state]);
+    $res.current.layoutEffect($state);
+  }, [$state]);
 
   useEffect(() => {
-    _ref.current.effect(_state);
-  }, [_state]);
+    $res.current.effect($state);
+  }, [$state]);
 
-  function _udateState({ setState, useLayoutEffect = _emptyFn, useEffect = _emptyFn }) {
-    _ref.current.effect = useEffect;
-    _ref.current.layoutEffect = useLayoutEffect;
-    _setState(setState);
+  function $udateState({ setState, useLayoutEffect = $emptyFn, useEffect = $emptyFn }) {
+    $res.current.effect = useEffect;
+    $res.current.layoutEffect = useLayoutEffect;
+    $setState(setState);
   }
 
-  return [_state, _udateState];
+  return [$state, $udateState];
 }
 
 export {
